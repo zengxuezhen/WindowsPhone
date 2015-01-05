@@ -1,0 +1,59 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="TimeTable.Course"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot 是包含所有页面内容的根网格-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <!--枢轴控件-->
+        <controls:Pivot Title="CourseTable" x:Name="pivotWeek">
+            <!--枢轴项一-->
+            <controls:PivotItem Header="Mon.">
+                <Grid>
+                    <ListBox x:Name="listboxCourse" ItemsSource="{Binding Coursetables}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel  Orientation="Horizontal">
+                                    <TextBlock x:Name="txtTime" Text="{Binding Coursetime}"></TextBlock>
+                                    <TextBlock x:Name="txtName" Text="{Binding Coursename}"></TextBlock>
+                                    <TextBlock x:Name="txtRoom" Text="{Binding Courseroom}"></TextBlock>
+                                    <TextBlock x:Name="txtCount" Text="{Binding Coursecount}"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    
+                </Grid>
+            </controls:PivotItem>
+
+            <!--枢轴项二-->
+            <controls:PivotItem Header="Tues.">
+                <Grid/>
+            </controls:PivotItem>
+        </controls:Pivot>
+    </Grid>
+
+    <!--演示 ApplicationBar 用法的示例代码-->
+  <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton x:Name="appbar_Add" IconUri="/icons/appbar.add.rest.png" Text="Add" Click="appbar_Add_Click" />
+            <shell:ApplicationBarIconButton x:Name="appbar_Off" IconUri="/icons/appbar.back.rest.png" Text="Exit"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem x:Name="menuItem1" Text="Photo Notes"/>
+                <shell:ApplicationBarMenuItem x:Name="menuItem2" Text="Text Notes"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+    
+</phone:PhoneApplicationPage>
